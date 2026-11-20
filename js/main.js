@@ -19,6 +19,20 @@
     });
   }
 
+  // 画面下の固定予約ボタン：ファーストビューの予約ボタンが見えている間は隠す
+  var fixedCta = document.querySelector('.fixed-cta');
+  var heroCta = document.querySelector('.hero-actions .btn-line');
+  if (fixedCta && heroCta && 'IntersectionObserver' in window) {
+    var headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 0;
+    fixedCta.classList.add('is-hidden');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        fixedCta.classList.toggle('is-hidden', entry.isIntersecting);
+      });
+    }, { rootMargin: '-' + headerH + 'px 0px 0px 0px' });
+    observer.observe(heroCta);
+  }
+
   // 見本のためリンクしていないボタン
   var toast = document.getElementById('toast');
   var timer = null;

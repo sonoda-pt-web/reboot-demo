@@ -656,6 +656,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   box-shadow: 0 -4px 16px rgba(27, 42, 74, .08);
 }
 .fixed-cta .btn { width: 100%; min-height: 52px; font-size: 16px; }
+.fixed-cta {
+  transition: transform .3s ease, visibility .3s;
+}
+.fixed-cta.is-hidden {
+  transform: translateY(100%);
+  visibility: hidden;
+}
 
 /* ---------- トースト ---------- */
 .toast {
